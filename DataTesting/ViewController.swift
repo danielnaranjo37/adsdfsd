@@ -8,11 +8,24 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ThisView: UIViewController {
+    @IBOutlet weak var color: UILabel!
+    @IBOutlet weak var brillo: UILabel!
+    @IBOutlet weak var durabilidad: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let manzana = Manzana()
+        let coder = NSKeyedArchiver()
+        let arr = ManzanaArray(names: [manzana], fileName: "manzanita")!
+        arr.encode(with: coder)
+        arr.archiveString(str: [manzana])
+        let manzanas = arr.restoreString()
+        let manzanita = manzanas![0]
+        color.text = manzanita.color
+        brillo.text = manzanita.brillo
+        durabilidad.text = manzanita.durabilidad
     }
 
     override func didReceiveMemoryWarning() {

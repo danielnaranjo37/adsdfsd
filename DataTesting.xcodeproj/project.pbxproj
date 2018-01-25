@@ -14,6 +14,8 @@
 		4E348E2C20110F18009D5EB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E348E2A20110F18009D5EB9 /* LaunchScreen.storyboard */; };
 		4E348E3720110F18009D5EB9 /* DataTestingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E348E3620110F18009D5EB9 /* DataTestingTests.swift */; };
 		4E348E4220110F18009D5EB9 /* DataTestingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E348E4120110F18009D5EB9 /* DataTestingUITests.swift */; };
+		5DCD84A720190A940044C04F /* Manzana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD84A620190A940044C04F /* Manzana.swift */; };
+		5DCD84A920190E530044C04F /* PersistentStringArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCD84A820190E530044C04F /* PersistentStringArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		4E348E3D20110F18009D5EB9 /* DataTestingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataTestingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E348E4120110F18009D5EB9 /* DataTestingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTestingUITests.swift; sourceTree = "<group>"; };
 		4E348E4320110F18009D5EB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DCD84A620190A940044C04F /* Manzana.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manzana.swift; sourceTree = "<group>"; };
+		5DCD84A820190E530044C04F /* PersistentStringArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersistentStringArray.swift; path = "../../../Desktop/Something Recognizable/Group-Connection/Group-Connection/Group Connection/Class Structures/PersistentStringArray.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 			children = (
 				4E348E2120110F18009D5EB9 /* AppDelegate.swift */,
 				4E348E2320110F18009D5EB9 /* ViewController.swift */,
+				5DCD84A620190A940044C04F /* Manzana.swift */,
+				5DCD84A820190E530044C04F /* PersistentStringArray.swift */,
 				4E348E2520110F18009D5EB9 /* Main.storyboard */,
 				4E348E2820110F18009D5EB9 /* Assets.xcassets */,
 				4E348E2A20110F18009D5EB9 /* LaunchScreen.storyboard */,
@@ -259,6 +265,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DCD84A720190A940044C04F /* Manzana.swift in Sources */,
+				5DCD84A920190E530044C04F /* PersistentStringArray.swift in Sources */,
 				4E348E2420110F18009D5EB9 /* ViewController.swift in Sources */,
 				4E348E2220110F18009D5EB9 /* AppDelegate.swift in Sources */,
 			);
@@ -507,6 +515,7 @@
 				4E348E4820110F18009D5EB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4E348E4920110F18009D5EB9 /* Build configuration list for PBXNativeTarget "DataTestingTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +524,7 @@
 				4E348E4B20110F18009D5EB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4E348E4C20110F18009D5EB9 /* Build configuration list for PBXNativeTarget "DataTestingUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +533,7 @@
 				4E348E4E20110F18009D5EB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
