@@ -21,8 +21,9 @@ class ThisView: UIViewController {
         let arr = ManzanaArray(names: [manzana], fileName: "manzanita")!
         arr.encode(with: coder)
         arr.archiveString(str: [manzana])
+        coder.finishEncoding()
         let manzanas = arr.restoreString()
-        let manzanita = manzanas![0]
+        let manzanita = manzanas[0]
         color.text = manzanita.color
         brillo.text = manzanita.brillo
         durabilidad.text = manzanita.durabilidad

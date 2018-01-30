@@ -12,7 +12,7 @@ import os.log
 class ManzanaArray: NSObject, NSCoding {
     
     
-    var stringNames: [Manzana]
+    var stringNames: [String]
     var fileStoredName: String
     
     struct Properties { //strings to find the data after encoding
@@ -32,7 +32,7 @@ class ManzanaArray: NSObject, NSCoding {
             return nil
         }
         
-        stringNames = names
+        stringNames = ManzanaArray.toStrings(apples: names)
         fileStoredName = fileName
         DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
         ArchiveURL = DocumentsDirectory.appendingPathComponent(fileName)
@@ -44,16 +44,16 @@ class ManzanaArray: NSObject, NSCoding {
     
     
     required convenience init?(coder aDecoder: NSCoder) {
-        guard let names = aDecoder.decodeObject(forKey: Properties.stringNames) as? [Manzana] else {
+        guard let temp = aDecoder.decodeObject(forKey: Properties.stringNames) as? [String] else {
             os_log("Unable to decode stuff.", log: OSLog.default, type: .debug)
             return nil
+            
         }
         
-        self.init(names: names, fileName: Properties.fileStoredName)
+        self.init(names: ManzanaArray.toManzanas(strs: temp), fileName: Properties.fileStoredName)
     }
     
     func archiveString(str: [Manzana]) {
-        stringNames = str
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(stringNames, toFile: ArchiveURL.path)
         if isSuccessfulSave {
             os_log("String successfully saved.", log: OSLog.default, type: .debug)
@@ -62,10 +62,50 @@ class ManzanaArray: NSObject, NSCoding {
         }
     }
     
-    func restoreString() -> [Manzana]?  {
-        let tmp = NSKeyedUnarchiver.unarchiveObject(withFile: ArchiveURL.path) as? [Manzana]
-        return tmp
+    func restoreString() -> [Manzana]  {
+        let tmp = NSKeyedUnarchiver.unarchiveObject(withFile: ArchiveURL.path) as? [String]
+        return ManzanaArray.toManzanas(strs: tmp!)
     }
+    
+    static func toStrings(apples: [Manzana]) -> [String] {
+        var things: (color: String, brillo: String, durabilidad: String)
+        var out: [String] = [] //1D array, one for each Manzana
+        for apple in apples {
+            things = apple.getValues()
+            out.append(things.color + "," + things.brillo + "," + things.durabilidad + ";")
+        }
+        return out
+    }
+    
+    static func toManzanas(strs: [String]) -> [Manzana] {
+        var out: [Manzana]! = [] //1D array, one for each line
+        for str in strs {
+            var temp = str
+            var apple = Manzana()
+            
+            var ind =  temp.index(of: ",")
+            var range = temp.startIndex..<ind
+            apple.color = temp.substring(with: range)
+            temp.removeSubrange(range)
+            temp.remove(at: temp.startIndex) //remove the comma
+            
+            ind =  temp.index(of: ",")
+            range = temp.startIndex..<ind
+            apple.brillo = temp.substring(with: range)
+            temp.removeSubrange(range)
+            temp.remove(at: temp.startIndex) //remove the comma
+            
+            ind =  temp.index(of: ";")
+            range = temp.startIndex..<ind
+            apple.durabilidad = temp.substring(with: range)
+            temp.removeSubrange(range)
+            temp.remove(at: temp.startIndex) //remove the semicolon
+            
+            out.append(apple)
+        }
+        return out
+    }
+    
 }
 
 

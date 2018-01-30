@@ -19,7 +19,7 @@ class Manzana: Codable {
         self.durabilidad = "suavecito"
     }
     
-    func asArray() -> [String] {
-        return  [self.color,self.brillo,self.durabilidad]
+    func getValues() -> (String,String,String) {
+        return  (self.color,self.brillo,self.durabilidad)
     }
 }
