@@ -12,46 +12,22 @@ class ThisView: UIViewController {
     @IBOutlet weak var color: UILabel!
     @IBOutlet weak var brillo: UILabel!
     @IBOutlet weak var durabilidad: UILabel!
-    
-    var manzanas: [Manzana] = []
-    var yesNo = -1
-    var arr: ManzanaArray!
-    
+    var manzana1: Manzana!
+    var data: Data!
     @IBAction func theButton(_ sender: Any) {
-        manzanas = arr.restoreString()
-        yesNo *= -1
-        if yesNo > 0 {
-            let manzanita = manzanas[0]
-            color.text = manzanita.color
-            brillo.text = manzanita.brillo
-            durabilidad.text = manzanita.durabilidad
-            return
-        }
-        else {
-            let manzanita = manzanas[1]
-            color.text = manzanita.color
-            brillo.text = manzanita.brillo
-            durabilidad.text = manzanita.durabilidad
-            return
-        }
+        let apple = try? JSONDecoder().decode(Manzana.Apple.self, from: data)
+        let manzana2 = Manzana(color: (apple?.color)!, brillo: (apple?.brillo)!, durabilidad: (apple?.durabilidad)!)
+        color.text = manzana2.color
+        brillo.text = manzana2.brillo
+        durabilidad.text = manzana2.durabilidad
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let manzana = Manzana()
-        manzana.color = "black like my soul"
-        manzana.brillo = "dark as all hell"
-        manzana.durabilidad = "like a baby butt"
-        let manzana2 = Manzana()
-        
-        let coder = NSKeyedArchiver()
-        arr = ManzanaArray(names: [manzana,manzana2], fileName: "manzanita")!
-        
-        arr.encode(with: coder)
-        arr.archiveString(str: [manzana])
-        coder.finishEncoding()
-        
+        manzana1 = Manzana(color:"black like my soul", brillo: "dark as all hell", durabilidad: "like a baby butt" )
+        let apple = Manzana.Apple(color: manzana1.color, brillo: manzana1.brillo, durabilidad: manzana1.durabilidad)
+        data = try? JSONEncoder().encode(apple)
         
     }
 

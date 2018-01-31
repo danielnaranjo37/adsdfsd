@@ -8,16 +8,28 @@
 
 import Foundation
 
-class Manzana: Codable {
+class Manzana: NSObject, Codable {
+    
+    struct Apple: Codable {
+        var color: String
+        var brillo: String
+        var durabilidad: String
+    }
+
     var color: String
     var brillo: String
     var durabilidad: String
-
-    init(){
-        self.color = "rojo"
-        self.brillo = "brillante"
-        self.durabilidad = "suavecito"
+    
+    static var jsonData: Data!
+    static var json: Any?
+    
+    init(color: String, brillo: String, durabilidad: String){
+        self.color = color
+        self.brillo = brillo
+        self.durabilidad = durabilidad
     }
+    
+
     
     func getValues() -> (String,String,String) {
         return  (self.color,self.brillo,self.durabilidad)
